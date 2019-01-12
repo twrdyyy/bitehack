@@ -4,7 +4,7 @@ def createDictionary():
     #Słownik: {wojewodztwo:{kategoria:wartość}}
     retDictionary = {wojTable[0]:{}, wojTable[1]:{}, wojTable[2]:{}, wojTable[3]:{}, wojTable[4]:{}, wojTable[5]:{}, wojTable[6]:{}, wojTable[7]:{}, wojTable[8]:{}, wojTable[9]:{}, wojTable[10]:{}, wojTable[11]:{}, wojTable[12]:{}, wojTable[13]:{}, wojTable[14]:{}, wojTable[15]:{}, "normal":{} }
     #========ECONOMY========
-    tempDict=economyDictionary(getUrlDict(['Economy']))
+    tempDict=economyDictionary(getUrlDict()['economy'])
     //NORMALIZUJ(tempDict)
     #Dla kazdego wojewodztwa w EconomyDictionary
     for i in tempDict:
@@ -15,7 +15,7 @@ def createDictionary():
         #Podziel sume przez ilosc kategorii i zapisz
         retDictionary[i]["Economy"]=suma/len(tempDict[i])
     #========HEALTH========
-    tempDict=healthDictionary(getUrlDict(['Health']))
+    tempDict=healthDictionary(getUrlDict()['health'])
     //NORMALIZUJ(tempDict)
     #Dla kazdego wojewodztwa w HealthDirectory
     for i in tempDict:
@@ -26,7 +26,7 @@ def createDictionary():
         #Podziel sume przez ilosc kategorii i zapisz
         retDictionary[i]["Health"]=suma/len(tempDict[i])
     #========Safety========
-    tempDict=safetyDictionary(getUrlDict(['Safety']))
+    tempDict=safetyDictionary(getUrlDict()['safety'])
     //NORMALIZUJ(tempDict)
     #Dla kazdego wojewodztwa w SafetyDictionary
     for i in tempDict:
