@@ -1,4 +1,6 @@
 from  createDictionary import *
+import pandas
 
 if __name__ == '__main__':
-    print(createDictionary())
+    data = pandas.DataFrame(createDictionary()).T
+    print(data)
