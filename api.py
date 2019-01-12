@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 from flask_restful import Resource, Api
 from createDictionary import * 
+import evaluate 
 
 data = createDictionary()
 
@@ -20,7 +21,7 @@ class best(Resource):
     def get(self,paramSafety,paramHealth,paramEconomy):
         params = {'Safety':paramSafety,'Health':paramHealth,'Economy':paramEconomy}
         table = applyParams(data,params)
-        return table
+        return evaluate.best(table)
 api.add_resource(regions, '/data')
 api.add_resource(best,'/best/<paramSafety>/<paramHealth>/<paramEconomy>')
 
