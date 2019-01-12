@@ -63,6 +63,10 @@ def safetyDictionary(url):
 
     #print(retDictionary)
 
+    for x in retDictionary:
+        for y in retDictionary[x]:
+            retDictionary[x][y] = retDictionary[x][y] * (numberOfResidents['All'] / float(numberOfResidents[x]))
+
     return retDictionary
 
 
