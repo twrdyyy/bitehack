@@ -10,7 +10,7 @@ def normalMaximum(UrlDict):
 		if key!='normal':
 			for issue in UrlDict[key]:
 				res[issue] = max(res[issue],UrlDict[key][issue])
-	# print(res)
+	# print(res)	
 	return res
 
 
@@ -21,7 +21,8 @@ def normalize(UrlDict, func=None):
 		if key != 'normal':
 			for issue in UrlDict[key]:	
 				UrlDict[key][issue] *= (1.0/UrlDict['normal'][issue])
-				UrlDict[key][issue] += 1
-				UrlDict[key][issue] /= 2
+				if func==None:
+					UrlDict[key][issue] += 1
+					UrlDict[key][issue] /= 2
 	return UrlDict
 
