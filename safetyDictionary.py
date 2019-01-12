@@ -7,28 +7,28 @@ def safetyDictionary(URL):
     #print(df.iloc[[34]])
 
     Woj = {}
-    Woj["KWP Kraków"] = 12
-    Woj["KWP Rzeszów"] = 18
-    Woj["KWP Lublin"] = 6
-    Woj["KWP Bia³ystok"] = 20
-    Woj["KWP Bydgoszcz"] = 22
-    Woj["KWP Gdañsk"] = 22
-    Woj["KWP Szczecin"] = 32
-    Woj["KWP Wroc³aw"] = 2
-    Woj["KWP Opole"] = 16
-    Woj["KWP Katowice"] = 24
-    Woj["KWP Olsztyn"] = 24
-    Woj["KWP Kielce"] = 26
-    Woj["KSP Warszawa"] = 14
-    Woj["KWP z/s w Radomiu"] = 14
-    Woj["KWP Gorzów Wielkpolski"] = 30
-    Woj["KWP Poznañ"] = 30
-    Woj["KWP £ód"] = 10
+    Woj["KWP Kraków"] = 'Malopolskie'
+    Woj["KWP Rzeszów"] = 'Podkarpackie'
+    Woj["KWP Lublin"] = 'Lubelskie'
+    Woj["KWP Bia³ystok"] = 'Podlaskie'
+    Woj["KWP Bydgoszcz"] = 'Kujawsko-pomorskie'
+    Woj["KWP Gdañsk"] = 'Pomorskie'
+    Woj["KWP Szczecin"] = 'Zachodnio-pomorskie'
+    Woj["KWP Wroc³aw"] = 'Dolnoslaskie'
+    Woj["KWP Opole"] = 'Opolskie'
+    Woj["KWP Katowice"] = 'Slaskie'
+    Woj["KWP Olsztyn"] = 'Warminsko-mazurskie'
+    Woj["KWP Kielce"] = 'Swietokrzyskie'
+    Woj["KSP Warszawa"] = 'Mazowieckie'
+    Woj["KWP z/s w Radomiu"] ='Mazowieckie'
+    Woj["KWP Gorzów Wielkpolski"] = 'Lubuskie'
+    Woj["KWP Poznañ"] = 'Wielkopolskie'
+    Woj["KWP £ód"] = 'Lodzkie'
 
-    k = 2
-    wojTable = ['Dolnoslaskie', 'Kujawsko-pomorskie', 'Lubelskie', 'Lubuskie', 'Lodzkie', 'Malopolskie', 'Mazowieckie', 'Opolskie', 'Podkarpackie', 'Podlaskie', 'Pomorskie', 'Slaskie', 'Swietokrzyskie', 'Warminsko-mazurskie', 'Wielkopolskie', 'Zachodnio-pomorskie' ]
+    wojTable = ['Dolnoslaskie', 'Kujawsko-pomorskie', 'Lubelskie', 'Lubuskie', 'Lodzkie', 'Malopolskie', 'Mazowieckie', 'Opolskie', 'Podkarpackie',
+                'Podlaskie', 'Pomorskie', 'Slaskie', 'Swietokrzyskie', 'Warminsko-mazurskie', 'Wielkopolskie', 'Zachodnio-pomorskie' ]
     # nazwa wojewodztwa = wojTable[liczba//2-1]
-    retDictionary = {2:0, 4:0, 6:0, 8:0, 10:0, 12:0, 14:0, 16:0, 18:0, 20:0, 22:0, 24:0, 26:0, 28:0, 30:0, 32:0}
+    retDictionary = {'Dolnoslaskie':0, 'Kujawsko-pomorskie':0, 'Lubelskie':0, 'Lubuskie':0, 'Lodzkie':0, 'Malopolskie':0, 'Mazowieckie':0, 'Opolskie':0, 'Podkarpackie':0, 'Podlaskie':0, 'Pomorskie':0, 'Slaskie':0, 'Swietokrzyskie':0, 'Warminsko-mazurskie':0, 'Wielkopolskie':0, 'Zachodnio-pomorskie':0}
 
     tab = ["KWP Kraków", "KWP Rzeszów", "KWP Lublin", "KWP Bia³ystok", "KWP Bydgoszcz", "KWP Gdañsk", "KWP Szczecin", "KWP Wroc³aw", "KWP Opole", "KWP Katowice",
            "KWP Olsztyn", "KWP Kielce", "KSP Warszawa", "KWP z/s w Radomiu", "KWP Gorzów Wielkpolski", "KWP Poznañ", "KWP £ód"]
