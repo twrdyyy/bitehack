@@ -1,5 +1,4 @@
 from apiclient import APIClient
-import healthDictionary as tumor
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -9,7 +8,7 @@ class daneGovPl(APIClient):
         return self.call(ID)['data']['attributes']['file_url']
 
 def getUrlDict():
-    res = {"health":{},"safety":{}}
+    res = {"health":{},"safety":{},"economy":{}}
     daneGov = daneGovPl()     
     res["health"].update({"tumor":daneGov.callDataset('3945')})
     res["safety"].update({"murder":daneGov.callDataset('10420')})
@@ -25,4 +24,6 @@ if __name__ == '__main__':
     # tumor.tumorDictionary(getUrlDict()['health']['tumor'])
     # print(tumor.healthDictionary(getUrlDict()['health']['health']))
     # print(getUrlDict())
-    #print(tumor.healthDictionary(getUrlDict()['health']))
+    # print(healthDictionary.healthDictionary(getUrlDict()['health']))
+    # getUrlDict()['economy']['unemployment']
+    pass
