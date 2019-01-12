@@ -1,6 +1,6 @@
 import pandas as pd
 
-def safetyDictionary(URL):
+def safetyDictionary(URL, LiczbaLudnosci):
     Dane = {}
     df = pd.read_csv(URL, header=None, encoding="latin1", error_bad_lines=False, sep=";")
     #print(df)
@@ -36,5 +36,13 @@ def safetyDictionary(URL):
     for x, y, z in zip(df[df.columns[0]], df[df.columns[1]], df[df.columns[2]]):
         if x in tab and int(str(y)) > 2015:
             retDictionary[Woj[x]] += int(str(z))
+
+    maxi = 0
+    for i in retDictionary:
+        if i > maxi:
+            maxi = i
+
+    for i in retDictionary:
+        i = i / float(maxi) * 100
 
     return retDictionary
