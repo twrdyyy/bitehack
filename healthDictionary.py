@@ -39,7 +39,7 @@ def mainHealthDictionary(arg1):
                             tmpName='Unnamed: ' + str(tmpCount)
                             tmpCount=tmpCount+1
                             retDictionary[woj][i]=baza[tmpName][itCount-1]
-                            if i != posSearch[0]
+                            if i != posSearch[0]:
                                 retDictionary[woj][i]*=-1
                             if baza[tmpName][itCount-1] > maks:
                                 maks = baza[tmpName][itCount-1]
