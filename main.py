@@ -1,6 +1,4 @@
-from getDataUrl import getUrlDict
-import healthDictionary
-import unemploymentDictionary
+from  createDictionary import *
 
 if __name__ == '__main__':
-    print(unemploymentDictionary.unemploymentDictionary(getUrlDict()['economy']['unemployment']))
+    print(createDictionary())

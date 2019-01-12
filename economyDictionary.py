@@ -7,7 +7,7 @@ def economyDictionary(url: str):
 	wojTable = ['Dolnoslaskie', 'Kujawsko-pomorskie', 'Lubelskie', 'Lubuskie', 'Lodzkie', 'Malopolskie', 'Mazowieckie', 'Opolskie', 'Podkarpackie', 'Podlaskie', 'Pomorskie', 'Slaskie', 'Swietokrzyskie', 'Warminsko-mazurskie', 'Wielkopolskie', 'Zachodnio-pomorskie' ]
 	retDict = {}
 	max_ = 0.0
-	data = pd.read_excel(url, sheet_name=0)
+	data = pd.read_excel(url['unemployment'], sheet_name=0)
 	
 	retDict['normal'] = {'unemployment' : max_}
 	for x, y, z in zip(data[data.columns[1]], data[data.columns[5]], data[data.columns[0]]):
