@@ -28,3 +28,14 @@ def healthDictionary(arg1):
                             retDictionary[woj][i]=baza[tmpName][itCount-1]
                 itCount=itCount+1
     return retDictionary
+
+
+'''
+#Kod do testowania, czy zwraca poprawne wartości
+healthDictionary("https://stat.gov.pl/download/gfx/portalinformacyjny/pl/defaultaktualnosci/5513/6/6/1/stan_zdrowia_ludnosci_polski_w_2014_r-tablie.zip")            
+for i in retDictionary:
+    print(i)
+    for j in retDictionary[i]:
+        print(j)
+        print(retDictionary[i][j])
+'''
