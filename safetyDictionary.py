@@ -26,6 +26,8 @@ def safetyDictionary(URL):
     Woj["KWP £ód"] = 10
 
     k = 2
+    wojTable = ['Dolnoslaskie', 'Kujawsko-pomorskie', 'Lubelskie', 'Lubuskie', 'Lodzkie', 'Malopolskie', 'Mazowieckie', 'Opolskie', 'Podkarpackie', 'Podlaskie', 'Pomorskie', 'Slaskie', 'Swietokrzyskie', 'Warminsko-mazurskie', 'Wielkopolskie', 'Zachodnio-pomorskie' ]
+    # nazwa wojewodztwa = wojTable[liczba//2-1]
     retDictionary = {2:0, 4:0, 6:0, 8:0, 10:0, 12:0, 14:0, 16:0, 18:0, 20:0, 22:0, 24:0, 26:0, 28:0, 30:0, 32:0}
 
     tab = ["KWP Kraków", "KWP Rzeszów", "KWP Lublin", "KWP Bia³ystok", "KWP Bydgoszcz", "KWP Gdañsk", "KWP Szczecin", "KWP Wroc³aw", "KWP Opole", "KWP Katowice",
