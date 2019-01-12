@@ -54,18 +54,19 @@ def safetyDictionary(url):
                 #print(x + " " + y + " " + z)
                 retDictionary[Woj[x]][arg] -= int(z.replace(" ", ""))
 
+    #print(retDictionary)
+
+    for x in retDictionary:
+        if x!='normal':
+            for y in retDictionary[x]:
+                retDictionary[x][y] = retDictionary[x][y] * (numberOfResidents['All'] / float(numberOfResidents[x]))
+    for arg in F:
         maxi = 0
         for j in retDictionary:
             for k in F:
                 if k == arg and retDictionary[j][k] < maxi:
                     maxi = retDictionary[j][k]
         retDictionary['normal'][arg] = maxi
-
-    #print(retDictionary)
-
-    for x in retDictionary:
-        for y in retDictionary[x]:
-            retDictionary[x][y] = retDictionary[x][y] * (numberOfResidents['All'] / float(numberOfResidents[x]))
 
     return retDictionary
 
