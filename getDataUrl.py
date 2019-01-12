@@ -24,10 +24,8 @@ if __name__ == '__main__':
     # tumor.tumorDictionary(getUrlDict()['health']['tumor'])
     # print(tumor.healthDictionary(getUrlDict()['health']['health']))
     # print(getUrlDict())
-<<<<<<< HEAD
     #print(tumor.healthDictionary(getUrlDict()['health']))
-=======
     # print(healthDictionary.healthDictionary(getUrlDict()['health']))
     # getUrlDict()['economy']['unemployment']
->>>>>>> 6073f076e750ba7a6557ff6246a9033818dcb46c
+
     pass
