@@ -4,6 +4,7 @@ import requests
 import zipfile
 import io
 import math
+import numberResidents
 
 categoriesSearch = ['Samoocena stanu zdrowia', 'Długotrwałe problemy zdrowotne', 'Chorujący przewlekle', 'Niepełnosprawność wg kryterium polskiego', 'Opóźnienia w dostępie z powodu długiego  czasu oczekiwania','Nowotwory']
 
@@ -48,6 +49,7 @@ def mainHealthDictionary(arg1):
 def tumorDictionary(url):
     wojTable = ['Dolnoslaskie', 'Kujawsko-pomorskie', 'Lubelskie', 'Lubuskie', 'Lodzkie', 'Malopolskie', 'Mazowieckie', 'Opolskie', 'Podkarpackie', 'Podlaskie', 'Pomorskie', 'Slaskie', 'Swietokrzyskie', 'Warminsko-mazurskie', 'Wielkopolskie', 'Zachodnio-pomorskie' ]
     retDictionary = {wojTable[0]:{}, wojTable[1]:{}, wojTable[2]:{}, wojTable[3]:{}, wojTable[4]:{}, wojTable[5]:{}, wojTable[6]:{}, wojTable[7]:{}, wojTable[8]:{}, wojTable[9]:{}, wojTable[10]:{}, wojTable[11]:{}, wojTable[12]:{}, wojTable[13]:{}, wojTable[14]:{}, wojTable[15]:{}}
+    numberOfResidents = numberResidents.numberResidents()
 
     data = pd.read_csv(url, delimiter=';');    
     data = data.drop('ICD10',axis=1)
@@ -57,11 +59,13 @@ def tumorDictionary(url):
     data = data[data['Rok']==year]
     data = data.drop('Rok', axis=1)
     grouped = data.groupby('Wojewodztwo').sum().reset_index()
-    normal = grouped['Liczba'].max()
-    retDictionary['normal']={'Nowotwory':normal}
+    normalId = 0
+    normal = grouped['Liczba'][normalId]*numberOfResidents['All']/numberOfResidents[wojTable[grouped['Wojewodztwo'][normalId]//2-1]]
     for index,row in grouped.iterrows():
-        retDictionary[wojTable[row['Wojewodztwo']//2-1]]={"Nowotwory":row['Liczba']}
-    # print(retDictionary)
+        valuePerResident =(row['Liczba']*numberOfResidents['All']/numberOfResidents[wojTable[row['Wojewodztwo']//2-1]])
+        normal = max(normal,valuePerResident)
+        retDictionary[wojTable[row['Wojewodztwo']//2-1]]={"Nowotwory":valuePerResident}
+    retDictionary['normal']={'Nowotwory':normal}    
     return retDictionary
 
 '''
