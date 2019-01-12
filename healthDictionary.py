@@ -64,7 +64,7 @@ def tumorDictionary(url):
     for index,row in grouped.iterrows():
         valuePerResident =(row['Liczba']*numberOfResidents['All']/numberOfResidents[wojTable[row['Wojewodztwo']//2-1]])
         normal = max(normal,valuePerResident)
-        retDictionary[wojTable[row['Wojewodztwo']//2-1]]={"Nowotwory":valuePerResident}
+        retDictionary[wojTable[row['Wojewodztwo']//2-1]]={"Nowotwory":-1*valuePerResident}
     retDictionary['normal']={'Nowotwory':normal}    
     return retDictionary
 
