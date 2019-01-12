@@ -1,6 +1,6 @@
 import pandas as pd
 
-def SafetyDictionary(URL):
+def safetyDictionary(URL):
     Dane = {}
     df = pd.read_csv(URL, header=None, encoding="latin1", error_bad_lines=False, sep=";")
     #print(df)
