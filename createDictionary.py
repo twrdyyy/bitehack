@@ -1,21 +1,39 @@
-'''
-Funkcja tworząca słownik zawierający wszystkie słowniki
-WIP, czekamy na resztę funkcji
-'''
-
 def createDictionary():
-    URLDict=GetUrlDict()
-    #Create base dictionary using healthDictionary()
-    retDict=healthDictionary(URLDict["Health"])
-    catList=healthCriteria()
-    #Unemployment
-    tempDict=unemploymentDictionary(URLDict["Unemployment"])
-    catList.append("Unemployment")
+    #Tablica wojewodztw
+    wojTable = ['Dolnoslaskie', 'Kujawsko-pomorskie', 'Lubelskie', 'Lubuskie', 'Lodzkie', 'Malopolskie', 'Mazowieckie', 'Opolskie', 'Podkarpackie', 'Podlaskie', 'Pomorskie', 'Slaskie', 'Swietokrzyskie', 'Warminsko-mazurskie', 'Wielkopolskie', 'Zachodnio-pomorskie' ]
+    #Słownik: {wojewodztwo:{kategoria:wartość}}
+    retDictionary = {wojTable[0]:{}, wojTable[1]:{}, wojTable[2]:{}, wojTable[3]:{}, wojTable[4]:{}, wojTable[5]:{}, wojTable[6]:{}, wojTable[7]:{}, wojTable[8]:{}, wojTable[9]:{}, wojTable[10]:{}, wojTable[11]:{}, wojTable[12]:{}, wojTable[13]:{}, wojTable[14]:{}, wojTable[15]:{}, "normal":{} }
+    #========ECONOMY========
+    tempDict=economyDictionary(getUrlDict(['Economy']))
+    //NORMALIZUJ(tempDict)
+    #Dla kazdego wojewodztwa w EconomyDictionary
     for i in tempDict:
-        retDict[i]["Unemployment"]=tempDict[i]
-    #Safety
-    tempDict=safetyDictionary(URLDict["Safety"])
-    catList.append("Safety")
+        #Dla kazdej kategorii w wojewodztwie zsumuj wyniki        
+        suma=0.0
+        for j in tempDict[i]:
+            suma=suma+tempDict[i][j]
+        #Podziel sume przez ilosc kategorii i zapisz
+        retDictionary[i]["Economy"]=suma/len(tempDict[i])
+    #========HEALTH========
+    tempDict=healthDictionary(getUrlDict(['Health']))
+    //NORMALIZUJ(tempDict)
+    #Dla kazdego wojewodztwa w HealthDirectory
     for i in tempDict:
-        retDict[i]["Safety"]=tempDict[i]
-    #
+        #Dla kazdej kategorii w wojewodztwie zsumuj wyniki
+        suma=0.0
+        for j in tempDict[i]:
+            suma=suma+tempDict[i][j]
+        #Podziel sume przez ilosc kategorii i zapisz
+        retDictionary[i]["Health"]=suma/len(tempDict[i])
+    #========Safety========
+    tempDict=safetyDictionary(getUrlDict(['Safety']))
+    //NORMALIZUJ(tempDict)
+    #Dla kazdego wojewodztwa w SafetyDictionary
+    for i in tempDict:
+        #Dla kazdej kategorii w wojewodztwie zsumuj wyniki
+        suma=0.0
+        for j in tempDict[i]:
+            suma=suma+tempDict[i][j]
+        #Podziel sume przez ilosc kategorii i zapisz
+        retDictionary[i]["Safety"]=suma/len(tempDict[i])
+    return retDictionary
