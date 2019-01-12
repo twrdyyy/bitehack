@@ -1,6 +1,8 @@
 ﻿import pandas as pd
-def safetyDictionary(url):
+import numberResidents
 
+def safetyDictionary(url):
+    numberOfResidents = numberResidents.numberResidents()
     # URL = {'gwałty':"https://www.dane.gov.pl/media/resources/20180521/postepowaniawszczete-zgwalcenie.csv",
         #    'morderstwa':"https://www.dane.gov.pl/media/resources/20180521/postepowaniawszczete-zabojstwo.csv",
         #    'kradzieże':"https://www.dane.gov.pl/media/resources/20180521/postepowaniawszczete-rozbojnicze.csv"}
