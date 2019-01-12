@@ -12,7 +12,7 @@ def economyDictionary(url: str):
 	retDict['normal'] = {'unemployment' : max_}
 	for x, y, z in zip(data[data.columns[1]], data[data.columns[5]], data[data.columns[0]]):
 		if(str(x) == "0" and str(z) != "0"):
-			retDict[(wojTable[int(str(z))//2-1])] = {'unemployment' : float(str(y))}
+			retDict[(wojTable[int(str(z))//2-1])] = {'unemployment' : -1*float(str(y))}
 			if(float(str(y)) > max_):
 				max_ = float(str(y))
 				retDict['normal']['unemployment'] = max_
