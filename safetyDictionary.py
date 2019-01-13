@@ -34,11 +34,11 @@ def safetyDictionary(LiczbaLudnosci):
     H = {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}
     F = ['morderstwa', 'gwałty', 'kradzieże']
 
-    retDictionary = {'Dolnoslaskie': H, 'Kujawsko-pomorskie': H, 'Lubelskie': H, 'Lubuskie': H, 'Lodzkie': H,
-                     'Malopolskie': H, 'Mazowieckie': H, 'Opolskie': H,
-                     'Podkarpackie': H, 'Podlaskie': H, 'Pomorskie': H, 'Slaskie': H, 'Swietokrzyskie': H,
-                     'Warminsko-mazurskie': H,
-                     'Wielkopolskie': H, 'Zachodnio-pomorskie': H, 'Normal' : H}
+    retDictionary = {'Dolnoslaskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Kujawsko-pomorskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Lubelskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Lubuskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Lodzkie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0},
+                     'Malopolskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Mazowieckie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Opolskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0},
+                     'Podkarpackie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Podlaskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Pomorskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Slaskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Swietokrzyskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0},
+                     'Warminsko-mazurskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0},
+                     'Wielkopolskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Zachodnio-pomorskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Normal' : {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}}
 
     tab = ["KWP Kraków", "KWP Rzeszów", "KWP Lublin", "KWP Bia³ystok", "KWP Bydgoszcz", "KWP Gdañsk", "KWP Szczecin",
            "KWP Wroc³aw", "KWP Opole", "KWP Katowice",
@@ -52,7 +52,6 @@ def safetyDictionary(LiczbaLudnosci):
         print(arg)
         for x, y, z in zip(df[df.columns[0]], df[df.columns[1]], df[df.columns[2]]):
             if x in tab and int(str(y)) > 2015:
-                print(x + " " + y + " " + z)
                 retDictionary[Woj[x]][arg] -= int(z.replace(" ", ""))
 
         maxi = 0
