@@ -32,6 +32,18 @@ def economyDictionary(url):
 					maks = baza["Unnamed: 2"][i]
 			retDictionary['normal']['Income']=maks
 
+
+	r = requests.get(url['retirement'], stream=True)
+	with zipfile.ZipFile(io.BytesIO(r.content)) as z:
+		with z.open("Dzial_06_Dochody ludnosci_Budzety_gospodarstw_domowych.xlsx") as f:
+			baza = pd.read_excel(f, "Tabl.2B")
+			maks=0.0
+			for i in range(10, 26):
+				retDictionary[wojTable[i-10]]["Income"]=baza["Unnamed: 1"][i]
+				if baza["Unnamed: 1"][i] > maks:
+					maks = baza["Unnamed: 1"][i]
+			retDictionary["normal"]["Income"]=maks
+
 	return retDictionary
 
 # -*- coding: utf-8 -*-
