@@ -111,8 +111,9 @@
                 paramSafety = $('#paramSafety').val();
                 paramHealth = $('#paramHealth').val();
                 paramEconomy = $('#paramEconomy').val();
-                if([paramEconomy,paramHealth,paramSafety].reduce(function(a,b){return parseInt(a)+parseInt(b);},0) > 10){
-                    console.log([paramEconomy,paramHealth,paramSafety].reduce(function(a,b){return parseInt(a)+parseInt(b);},0));
+                paramsSum =[paramEconomy,paramHealth,paramSafety].reduce(function(a,b){return parseInt(a)+parseInt(b);},0);
+                if( paramsSum > 10 || paramsSum <=0){
+                    // console.log([paramEconomy,paramHealth,paramSafety].reduce(function(a,b){return parseInt(a)+parseInt(b);},0));
                     return ;
                 }
                 jQuery.get('best/'+paramSafety+'/'+paramHealth+'/'+paramEconomy, function(data){
@@ -133,7 +134,7 @@
                             }
                         }
                         barChartData['datasets'][0]['data']=safetyData;
-                        console.log(safetyData);
+                        // console.log(safetyData);
                         barChartData['datasets'][1]['data']=healthData;
                         barChartData['datasets'][2]['data']=economyData;
                 
