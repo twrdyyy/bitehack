@@ -7,6 +7,7 @@ from functools import reduce
 import evaluate 
 
 data = createDictionary()
+print(data)
 
 app = Flask(__name__)
 api = Api(app)
