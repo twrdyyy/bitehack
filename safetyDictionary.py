@@ -32,12 +32,12 @@ def safetyDictionary(url):
                 'Zachodnio-pomorskie']
     # nazwa wojewodztwa = wojTable[liczba//2-1]
 
-    F = ['murder', 'rape', 'theft']
+    F = ['murder', 'rape', 'theft', 'drugs', 'battery']
 
     retDictionary = {}
     for woj in wojTable:
-        retDictionary[woj]={'murder':0,'rape':0,'theft':0}
-    retDictionary['normal']={'murder':0,'rape':0,'theft':0}
+        retDictionary[woj]={'murder':0,'rape':0,'theft':0, 'drugs':0, 'battery':0}
+    retDictionary['normal']={'murder':0,'rape':0,'theft':0, 'drugs':0, 'battery':0}
 
     tab = ["KWP Kraków", "KWP Rzeszów", "KWP Lublin", "KWP Bia³ystok", "KWP Bydgoszcz", "KWP Gdañsk", "KWP Szczecin",
            "KWP Wroc³aw", "KWP Opole", "KWP Katowice",

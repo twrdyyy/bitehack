@@ -18,6 +18,7 @@ def getUrlDict():
     res["safety"].update({"battery":daneGov.callDataset('5938')})
     res["health"].update({"health":'https://stat.gov.pl/download/gfx/portalinformacyjny/pl/defaultaktualnosci/5513/6/6/1/stan_zdrowia_ludnosci_polski_w_2014_r-tablie.zip'})
     res["economy"].update({"unemployment":"https://stat.gov.pl/download/gfx/portalinformacyjny/pl/defaultaktualnosci/5473/2/39/1/pow11_15____.xls"})
+    res['economy'].update({'income': "https://www.dane.gov.pl/media/resources/20160114/rocznik-statystyczny-wojewodztw-2017-tablice.zip"})
     return res
 
 if __name__ == '__main__':
