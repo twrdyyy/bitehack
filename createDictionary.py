@@ -41,4 +41,5 @@ def createDictionary():
             suma=suma+tempDict[i][j]
         #Podziel sume przez ilosc kategorii i zapisz
         retDictionary[i]["Safety"]=suma/len(tempDict[i])
-    return retDictionary
+    # return retDictionary
+    return normalize(retDictionary,'Max')

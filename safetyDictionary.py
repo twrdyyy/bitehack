@@ -1,10 +1,11 @@
 ﻿import pandas as pd
-h = 1
-def safetyDictionary(LiczbaLudnosci):
+import numberResidents
 
-    URL = {'gwałty':"https://www.dane.gov.pl/media/resources/20180521/postepowaniawszczete-zgwalcenie.csv",
-           'morderstwa':"https://www.dane.gov.pl/media/resources/20180521/postepowaniawszczete-zabojstwo.csv",
-           'kradzieże':"https://www.dane.gov.pl/media/resources/20180521/postepowaniawszczete-rozbojnicze.csv"}
+def safetyDictionary(url):
+    numberOfResidents = numberResidents.numberResidents()
+    # URL = {'gwałty':"https://www.dane.gov.pl/media/resources/20180521/postepowaniawszczete-zgwalcenie.csv",
+        #    'morderstwa':"https://www.dane.gov.pl/media/resources/20180521/postepowaniawszczete-zabojstwo.csv",
+        #    'kradzieże':"https://www.dane.gov.pl/media/resources/20180521/postepowaniawszczete-rozbojnicze.csv"}
 
     Woj = {}
     Woj["KWP Kraków"] = 'Malopolskie'
@@ -31,14 +32,20 @@ def safetyDictionary(LiczbaLudnosci):
                 'Zachodnio-pomorskie']
     # nazwa wojewodztwa = wojTable[liczba//2-1]
 
-    H = {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}
-    F = ['morderstwa', 'gwałty', 'kradzieże']
+    F = ['murder', 'rape', 'theft']
 
+<<<<<<< HEAD
     retDictionary = {'Dolnoslaskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Kujawsko-pomorskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Lubelskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Lubuskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Lodzkie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0},
                      'Malopolskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Mazowieckie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Opolskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0},
                      'Podkarpackie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Podlaskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Pomorskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Slaskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Swietokrzyskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0},
                      'Warminsko-mazurskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0},
                      'Wielkopolskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Zachodnio-pomorskie': {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}, 'Normal' : {'morderstwa': 0, 'gwałty': 0, 'kradzieże': 0}}
+=======
+    retDictionary = {}
+    for woj in wojTable:
+        retDictionary[woj]={'murder':0,'rape':0,'theft':0}
+    retDictionary['normal']={'murder':0,'rape':0,'theft':0}
+>>>>>>> 810a23071401e1407336fc192df45189dc75d682
 
     tab = ["KWP Kraków", "KWP Rzeszów", "KWP Lublin", "KWP Bia³ystok", "KWP Bydgoszcz", "KWP Gdañsk", "KWP Szczecin",
            "KWP Wroc³aw", "KWP Opole", "KWP Katowice",
@@ -48,21 +55,33 @@ def safetyDictionary(LiczbaLudnosci):
 
 
     for arg in F:
-        df = pd.read_csv(URL[arg], header=None, encoding="latin1", error_bad_lines=False, sep=";")
-        print(arg)
+        df = pd.read_csv(url[arg], header=None, encoding="latin1", error_bad_lines=False, sep=";")
+        # print(arg)
         for x, y, z in zip(df[df.columns[0]], df[df.columns[1]], df[df.columns[2]]):
             if x in tab and int(str(y)) > 2015:
+<<<<<<< HEAD
+=======
+                #print(x + " " + y + " " + z)
+>>>>>>> 810a23071401e1407336fc192df45189dc75d682
                 retDictionary[Woj[x]][arg] -= int(z.replace(" ", ""))
 
+    #print(retDictionary)
+
+    for x in retDictionary:
+        if x!='normal':
+            for y in retDictionary[x]:
+                retDictionary[x][y] = retDictionary[x][y] * (numberOfResidents['All'] / float(numberOfResidents[x]))
+    for arg in F:
         maxi = 0
         for j in retDictionary:
             for k in F:
                 if k == arg and retDictionary[j][k] < maxi:
                     maxi = retDictionary[j][k]
-        retDictionary['Normal'][arg] = maxi
-
-    print(retDictionary)
+        retDictionary['normal'][arg] = maxi
 
     return retDictionary
 
-safetyDictionary(h)
+
+if __name__ == '__main__':
+    from getDataUrl import *
+    print(safetyDictionary(getUrlDict()['safety']))

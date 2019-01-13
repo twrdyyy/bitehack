@@ -39,11 +39,12 @@ def mainHealthDictionary(arg1):
                             tmpName='Unnamed: ' + str(tmpCount)
                             tmpCount=tmpCount+1
                             retDictionary[woj][i]=baza[tmpName][itCount-1]
+                            if i != posSearch[0]:
+                                retDictionary[woj][i]*=-1
                             if baza[tmpName][itCount-1] > maks:
                                 maks = baza[tmpName][itCount-1]
                         retDictionary["normal"][i]=maks
                 itCount=itCount+1
-    
     return retDictionary
 
 def tumorDictionary(url):
@@ -64,7 +65,7 @@ def tumorDictionary(url):
     for index,row in grouped.iterrows():
         valuePerResident =(row['Liczba']*numberOfResidents['All']/numberOfResidents[wojTable[row['Wojewodztwo']//2-1]])
         normal = max(normal,valuePerResident)
-        retDictionary[wojTable[row['Wojewodztwo']//2-1]]={"Nowotwory":valuePerResident}
+        retDictionary[wojTable[row['Wojewodztwo']//2-1]]={"Nowotwory":-1*valuePerResident}
     retDictionary['normal']={'Nowotwory':normal}    
     return retDictionary
 
