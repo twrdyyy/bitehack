@@ -15,11 +15,22 @@
         h3{
             padding-bottom: 20px;
         }
+        .vertical-center {
+            min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+            min-height: 100vh; /* These two lines are counted as one :-)       */
+            display: flex;
+            align-items: center;
+        }
+        .details{
+            position: relative;
+            top: 4px;
+            padding-left: 6px;
+        }
         </style>
-</head>
+</head> 
 <body>
     <div class="row">
-        <h3 class="col-centered">Powiedz nam jak ważne są dla ciebie kolejne aspekty. Suma wybranych parametrów nie może przekroczyć dziesięciu.</h3>
+        <h3 class="col-centered">Powiedz nam jak ważne są dla ciebie kolejne aspekty.</h3><!-- Suma wybranych parametrów nie może przekroczyć dziesięciu.</h3>-->
     </div>
     <script>
         //charts
@@ -32,27 +43,11 @@
 			}, {
 				label: 'Zdrowie',
 				backgroundColor: window.chartColors.blue,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				]
+				data: []
 			}, {
 				label: 'Finanse',
 				backgroundColor: window.chartColors.green,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				]
+				data: []
 			}]
 
 		};
@@ -112,7 +107,7 @@
                 paramHealth = $('#paramHealth').val();
                 paramEconomy = $('#paramEconomy').val();
                 paramsSum =[paramEconomy,paramHealth,paramSafety].reduce(function(a,b){return parseInt(a)+parseInt(b);},0);
-                if( paramsSum > 10 || paramsSum <=0){
+                if(/*paramsSum > 10 ||*/ paramsSum <=0){
                     // console.log([paramEconomy,paramHealth,paramSafety].reduce(function(a,b){return parseInt(a)+parseInt(b);},0));
                     return ;
                 }
@@ -144,21 +139,28 @@
         });
     </script>
     <div class="form-group">
-        <h4>Bezpieczeństwo</h4>
+        <div class="row">
+            <h4>Bezpieczeństwo</h4><p class="details">(dane statystyczne na temat liczby kradzieży, zabójstw i gwałtów)</p>
+        </div>
+        
         <div class="range-slider">
             <input class="range-slider__range" type="range" value="2" min="0" max="5" id="paramSafety">
             <span class="range-slider__value">2</span>
         </div>     
     </div>
     <div class='form-group'>
-        <h4>Zdrowie</h4>
+        <div class="row">
+            <h4>Zdrowie</h4><p class="details">(dane statystyczne na temat samooceny stanu zdrowia, długotrwałych problemów zdrowotnych, liczby mieszkańców chorujących przewlekle, opóźnień w dostępie do służby medycznej i  liczby zachorowań na nowotwory)</p>
+        </div>
         <div class="range-slider">
                 <input class="range-slider__range" type="range" value="2" min="0" max="5" id="paramHealth">
                 <span class="range-slider__value">2</span>
         </div> 
     </div>
     <div class='form-group'>
-        <h4>Finanse</h4>
+        <div class="row">
+            <h4>Finanse</h4><p class="details">(dane statystyczne na temat stopnia bezrobocia i przeciętnego wynagrodzenia)</p>
+        </div>
         <div class="range-slider">
                 <input class="range-slider__range" type="range" value="2" min="0" max="5" id="paramEconomy">
                 <span class="range-slider__value">2</span>
@@ -174,9 +176,23 @@
         <h2 id="result"></h2>
         </div>
     </div>
-	<div style="width: 100%;visibility: hidden;">
+
+    <div style="width: 100%;visibility: hidden;">
             <canvas id="canvas"></canvas>
     </div>
+
+    <!-- <h3>Wykorzystywane zbiory danych:</h3>
+    <br>
+    <ol>
+        <li>Bezpieczeństwo:
+            <ul>
+                <li></li>
+            </ul>
+        </li>
+    </ol> -->
+
+    
+    
 
 <script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script>
