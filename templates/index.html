@@ -3,5 +3,25 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+    <script>
+        $(document).ready(function(){
+            $('#find').on('click',function () {
+                paramSafety = $('#paramSafety').val();
+                paramHealth = $('#paramHealth').val();
+                paramEconomy = $('#paramEconomy').val();
 
+                $.get('best/'+paramSafety+'/'+paramHealth+'/'+paramEconomy, function(data){
+                    console.log(data);
+                    $('#result').text(data);
+                });
+            });
+        });
+    </script>
+                
+    <input id='paramSafety' value='3'>
+    <input id='paramHealth' value='2'>
+    <input id='paramEconomy' value='1'>
+    <button id='find' type="submit">Wyszukaj</button>
+    <br>
+    <div id='result'></div>
 </body>
