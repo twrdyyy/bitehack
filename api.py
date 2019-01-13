@@ -22,6 +22,7 @@ class best(Resource):
         params = {'Safety':paramSafety,'Health':paramHealth,'Economy':paramEconomy}
         table = applyParams(data,params)
         return evaluate.best(table)
+
 api.add_resource(regions, '/data')
 api.add_resource(best,'/best/<paramSafety>/<paramHealth>/<paramEconomy>')
 
