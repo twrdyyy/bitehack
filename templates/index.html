@@ -5,11 +5,17 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script src="https://www.chartjs.org/dist/2.7.3/Chart.bundle.js"></script>
+        <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+
         <style>
         .col-centered{
             float: none;
             margin: 0 auto;
-            }
+        }
+        h3{
+            padding-bottom: 20px;
+        }
         </style>
 </head>
 <body>
@@ -35,7 +41,7 @@
             wojTable['Warminsko-mazurskie']='Warmińsko Mazurskie';
             wojTable['Wielkopolskie']='Wielkopolskie';
             wojTable['Zachodnio-pomorskie']='Zachodnio Pomorskie';
-
+            // console.log(wojTable);
             var resultText = 'Wybrane dla ciebie województwo, to: ';
             $('#find').on('click',function () {
                 paramSafety = $('#paramSafety').val();
@@ -49,6 +55,8 @@
                     console.log(data);
                     $('#result').text(resultText+wojTable[data]);
                 });
+                $('#canvas').css('visibility','visible');
+                // jQuery.get('/table/')
             });
         });
     </script>
@@ -83,9 +91,91 @@
         <h2 id="result"></h2>
         </div>
     </div>
+	<div style="width: 100%;visibility: hidden;">
+            <canvas id="canvas"></canvas>
+    </div>
+    
+<script>
+    	var barChartData = {
+			labels: ["Dolnośląskie","Kujawsko Pomorskie","Łódzkie","Lubelskie","Lubuskie","Małopolskie","Mazowieckie","Opolskie","Podkarpackie","Podlaskie","Pomorskie","Śląskie","Świętokrzyskie","Warmińsko Mazurskie","Wielkopolskie","Zachodnio Pomorskie"],
+			datasets: [{
+				label: 'Bezpieczeństwo',
+				backgroundColor: window.chartColors.red,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+                    randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				]
+			}, {
+				label: 'Zdrowie',
+				backgroundColor: window.chartColors.blue,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				]
+			}, {
+				label: 'Finanse',
+				backgroundColor: window.chartColors.green,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				]
+			}]
+
+		};
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					title: {
+						display: true,
+						text: 'Które województwo pasuje do ciebie najlepiej?'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false
+					},
+					responsive: true,
+					scales: {
+						xAxes: [{
+							stacked: true,
+						}],
+						yAxes: [{
+							stacked: true
+						}]
+					}
+				}
+			});
+		};
+</script>
 
 <script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script >
+<script>
 //https:codepen//.io/seanstopnik/pen/CeLqA.js
 var rangeSlider = function () {
   var slider = $('.range-slider'),
